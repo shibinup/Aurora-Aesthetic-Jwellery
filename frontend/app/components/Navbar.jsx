@@ -1,5 +1,5 @@
 "use client";
-
+import Link from 'next/link';
 import { useState } from "react";
 import {
   Menu,
@@ -47,12 +47,12 @@ export default function Navbar() {
 
         {/* Icons */}
         <div className="absolute right-4 flex items-center gap-4 top-15">
-          <Home size={20} className="cursor-pointer"/>
-          <Search size={20} className="cursor-pointer" />
-          <User size={20} className="cursor-pointer" />
+          <Link href={"/"} ><Home size={20}  className="cursor-pointer hover:bg-blue-400"/></Link>
+          <Link href={"/collections"}><Search size={20}  className="cursor-pointer hover:bg-blue-400" /></Link>
+          <Link href={"/user"}><User size={20} href="/users" className="cursor-pointer hover:bg-blue-400" /></Link>
 
           <div className="relative cursor-pointer">
-            <ShoppingCart size={20} />
+            <ShoppingCart size={20} className='hover:bg-blue-400'/>
             <span className="absolute -top-2 -right-2 bg-yellow-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
               2
             </span>
@@ -62,15 +62,15 @@ export default function Navbar() {
 
       {/* Desktop Navigation */}
       <nav className="hidden md:flex justify-center gap-8 py-3 text-sm border-t border-gray-200">
-        {navLinks.map((link) => (
-          <a
-            key={link.name}
-            href={link.path}
-            className="hover:text-yellow-700 transition"
-          >
-            {link.name}
-          </a>
-        ))}
+      {navLinks.map((link) => (
+  <Link 
+    key={link.name} 
+    href={link.path} 
+    className="hover:text-blue-400 transition"
+  >
+    {link.name}
+  </Link>
+))}
       </nav>
 
       {/* Mobile Menu */}
