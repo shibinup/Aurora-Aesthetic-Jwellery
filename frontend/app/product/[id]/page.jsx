@@ -1,11 +1,14 @@
 "use client";
-
+import { useParams } from 'next/navigation'
+import Loading from '../../components/Skeleton';
 import Image from 'next/image'
 import { useState } from "react";
+import { products } from '../../dummyDb';
 
 const product = {
   name: "Dawn Aura Diamond Necklace",
   price: 300,
+  imageUrl:"https://images.unsplash.com/photo-1635767798638-3e25273a8236",
   description:
     "A delicate blend of elegance and brilliance. The Dawn Aura diamond necklace is crafted to reflect timeless beauty and sophistication for every occasion.",
   features: [
@@ -41,16 +44,17 @@ function QuantitySelector({ quantity, onChange }) {
   );
 }
 
-export default function ProductPage() {
+export default  function ProductPage() {
+  const[loading,setLoading] = useState(true)
   const [quantity, setQuantity] = useState(1);
   const [selectedThumb, setSelectedThumb] = useState(0);
   const [added, setAdded] = useState(false);
-
+  const { id } = useParams()
   const handleAddToCart = () => {
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
-
+  if(loading) return <Loading/>
   return (
     <div className="min-h-screen bg-stone-50 font-sans">
       {/* Product Section */}
