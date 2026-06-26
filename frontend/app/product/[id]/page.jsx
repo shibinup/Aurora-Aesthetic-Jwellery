@@ -2,7 +2,7 @@
 import { useParams } from 'next/navigation'
 import Loading from '../../components/Skeleton';
 import Image from 'next/image'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { products } from '../../dummyDb';
 
 const product = {
@@ -45,11 +45,31 @@ function QuantitySelector({ quantity, onChange }) {
 }
 
 export default  function ProductPage() {
+  const [product,setProduct] = useState(true)
   const[loading,setLoading] = useState(true)
   const [quantity, setQuantity] = useState(1);
   const [selectedThumb, setSelectedThumb] = useState(0);
   const [added, setAdded] = useState(false);
   const { id } = useParams()
+
+    useEffect(() => {
+    // 1. Declare the async function inside the effect
+    const fetchData = async () => {
+      setLoading(true)
+      try {
+        const data = products.find(product => product.id === Number(id))
+        setProduct(data)
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+      setLoading(false)
+    };
+    
+    // 2. Call the function immediately
+    fetchData();
+
+  }, [])
+
   const handleAddToCart = () => {
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
@@ -64,7 +84,7 @@ export default  function ProductPage() {
           <div className="space-y-3">
             {/* Main image */}
             <Image 
-                src="https://images.unsplash.com/photo-1635767798638-3e25273a8236" 
+                src={product.imageUrl} 
                 alt="Abstract 3D rendering"
                 width={500} 
                 height={500} 
