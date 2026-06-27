@@ -88,7 +88,7 @@ function CartItem({ item, onQtyChange, onRemove, isLast }) {
   );
 }
 
-function OrderSummary({ subtotal, onCheckout, promoOpen, setPromoOpen, promoCode, setPromoCode }) {
+function OrderSummary({ subtotal, onCheckout}) {
   return (
     <div className="bg-[#FAF7F2] border border-[#E8E0D0] rounded-lg p-6 sticky top-28">
       <h2 className="text-base font-semibold tracking-widest uppercase text-[#4A3728] mb-5">
@@ -110,28 +110,6 @@ function OrderSummary({ subtotal, onCheckout, promoOpen, setPromoOpen, promoCode
       >
         Proceed to Checkout
       </button>
-
-      <button
-        onClick={() => setPromoOpen(!promoOpen)}
-        className="w-full text-center text-xs text-[#9B8B7A] hover:text-[#C4A35A] underline transition-colors"
-      >
-        Apply Promo Code
-      </button>
-
-      {promoOpen && (
-        <div className="mt-3 flex gap-2">
-          <input
-            type="text"
-            value={promoCode}
-            onChange={(e) => setPromoCode(e.target.value)}
-            placeholder="Enter code"
-            className="flex-1 border border-[#D4C5A9] rounded px-3 py-2 text-sm bg-white text-[#4A3728] placeholder-[#C4B89A] focus:outline-none focus:border-[#C4A35A]"
-          />
-          <button className="bg-[#4A3728] text-white text-xs px-3 py-2 rounded hover:bg-[#6B5A3E] transition-colors">
-            Apply
-          </button>
-        </div>
-      )}
     </div>
   );
 }
@@ -143,8 +121,7 @@ function OrderSummary({ subtotal, onCheckout, promoOpen, setPromoOpen, promoCode
 export default function CartPage() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true)
-  const [promoOpen, setPromoOpen] = useState(false);
-  const [promoCode, setPromoCode] = useState("");
+ 
 
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -233,10 +210,6 @@ export default function CartPage() {
               <div className="hidden lg:block">
                 <OrderSummary
                   subtotal={subtotal}
-                  promoOpen={promoOpen}
-                  setPromoOpen={setPromoOpen}
-                  promoCode={promoCode}
-                  setPromoCode={setPromoCode}
                 />
               </div>
             </div>
