@@ -1,6 +1,7 @@
 export const products = [
   {
     id: 1,
+    qty:6,
     name: "Dawn Aura Diamond Necklace",
     price: 300,
     imageUrl: "https://images.unsplash.com/photo-1635767798638-3e25273a8236",
@@ -15,6 +16,7 @@ export const products = [
   },
   {
     id: 2,
+    qty:2,
     name: "Luna Pearl Elegance Set",
     price: 250,
     imageUrl: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0",
@@ -29,6 +31,7 @@ export const products = [
   },
   {
     id: 3,
+    qty:4,
     name: "Royal Emerald Crown Ring",
     price: 180,
     imageUrl: "https://images.unsplash.com/photo-1605100804763-247f67b3557e",
@@ -43,6 +46,7 @@ export const products = [
   },
   {
     id: 4,
+    qty:2,
     name: "Starlight Crystal Bracelet",
     price: 120,
     imageUrl: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed",
@@ -57,6 +61,7 @@ export const products = [
   },
   {
     id: 5,
+    qty:3,
     name: "Golden Horizon Pendant",
     price: 220,
     imageUrl: "https://images.unsplash.com/photo-1588444650733-9fbfca5c2e5b",
