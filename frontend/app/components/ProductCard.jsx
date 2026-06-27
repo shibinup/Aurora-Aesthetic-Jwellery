@@ -5,8 +5,8 @@ export default function ProductCard({ product }) {
     <div className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition duration-300">
       <div className="relative h-64 w-full">
         <Image
-          src={product.url}
-          alt={product.title}
+          src={product.imageUrl}
+          alt={product.description}
           fill
           className="object-cover"
         />
@@ -14,11 +14,11 @@ export default function ProductCard({ product }) {
 
       <div className="p-4">
         <h3 className="text-xl font-semibold">
-          {product.title}
+          {product.name}
         </h3>
 
         <p className="text-gray-500 text-sm mt-1">
-          {product.subtitle}
+          {product.description}
         </p>
 
         <p className="text-lg font-bold mt-3">

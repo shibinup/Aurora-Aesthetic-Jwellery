@@ -5,21 +5,6 @@ import Image from 'next/image'
 import { useEffect, useState } from "react";
 import { products } from '../../dummyDb';
 
-const product = {
-  name: "Dawn Aura Diamond Necklace",
-  price: 300,
-  imageUrl:"https://images.unsplash.com/photo-1635767798638-3e25273a8236",
-  description:
-    "A delicate blend of elegance and brilliance. The Dawn Aura diamond necklace is crafted to reflect timeless beauty and sophistication for every occasion.",
-  features: [
-    {  label: "Premium Quality Diamonds" },
-    {  label: "18K Gold Plated" },
-    {  label: "Hypoallergenic & Skin Safe" },
-    {  label: "Certificate of Authenticity" },
-  ],
-};
-
-
 function QuantitySelector({ quantity, onChange }) {
   return (
     <div className="flex items-center border border-stone-300 rounded-lg overflow-hidden w-fit">
