@@ -8,6 +8,7 @@ import {
   ShoppingCart,
   X,
   Home,
+  Info
 } from "lucide-react";
 
 export default function Navbar() {
@@ -50,7 +51,7 @@ export default function Navbar() {
           <Link href={"/"} ><Home size={20}  className="cursor-pointer hover:bg-blue-400"/></Link>
           <Link href={"/collections"}><Search size={20}  className="cursor-pointer hover:bg-blue-400" /></Link>
           <Link href={"/user"}><User size={20} href="/users" className="cursor-pointer hover:bg-blue-400" /></Link>
-
+          <Link href={"/about"}><Info size={20} href="/about" className="cursor-pointer hover:bg-blue-400" /></Link>
           <div className="relative cursor-pointer">
             <Link href={"/cart"}><ShoppingCart size={20} className='hover:bg-blue-400'/></Link>
             <span className="absolute -top-2 -right-2 bg-yellow-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">

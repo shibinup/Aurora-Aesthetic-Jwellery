@@ -7,7 +7,7 @@ import { products } from '../../dummyDb';
 
 function QuantitySelector({ quantity, onChange }) {
   return (
-    <div className="flex items-center border border-stone-300 rounded-lg overflow-hidden w-fit">
+    <div className="flex items-center border border-stone-300 rounded-lg overflow-hidden w-fit ">
       <button
         onClick={() => onChange(Math.max(1, quantity - 1))}
         className="px-3 py-2 text-stone-600 hover:bg-stone-100 transition-colors text-lg font-light"
@@ -61,7 +61,7 @@ export default  function ProductPage() {
   };
   if(loading) return <Loading/>
   return (
-    <div className="min-h-screen bg-stone-50 font-sans">
+    <div className="min-h-screen bg-stone-80 font-sans ">
       {/* Product Section */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
