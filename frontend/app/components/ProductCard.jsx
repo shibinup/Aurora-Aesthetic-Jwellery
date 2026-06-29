@@ -9,7 +9,8 @@ const handleCardClick = () => {
 
   return (
     <div onClick={handleCardClick}  className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition duration-300">
-      <div className="relative h-64 w-full">
+    <div className="bg-white rounded-lg shadow group">  {/* 👈 add `group` here */}
+      <div className="relative h-64 w-full overflow-hidden">
         <Image
           src={product.imageUrl}
           alt={product.description}
@@ -17,6 +18,7 @@ const handleCardClick = () => {
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
       </div>
+    </div>
 
       <div className="p-4">
         <h3 className="text-xl font-semibold">

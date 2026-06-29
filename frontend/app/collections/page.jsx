@@ -437,7 +437,6 @@ export default function AuroraFilterPage() {
 const router = useRouter()
 
   const handleNavigation = (id) => {
-    // Navigates programmatically to the dashboard profile page
     router.push(`/product/${id}`)
   }
 
