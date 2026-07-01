@@ -21,7 +21,7 @@ const getProducts = async (req, res) => {
 
 const getTopProducts = async (req, res) => {
   try {
-    const products = await Product.find().limit(10);;
+    const products = await Product.find().limit(20);;
     res.status(200).json({
       success: true,
       count: products.length,
