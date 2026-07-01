@@ -1,8 +1,9 @@
 import express from 'express'
-import { getProducts } from '../services/userServices.js';
+import { getProducts,getTopProducts } from '../services/userServices.js';
 
 const userRouter = express.Router();
 
-userRouter.get("/",getProducts)
+userRouter.get("/",getTopProducts)
+userRouter.get("/getAllProducts",getProducts)
 
 export default userRouter

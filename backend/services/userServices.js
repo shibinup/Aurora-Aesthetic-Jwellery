@@ -18,4 +18,22 @@ const getProducts = async (req, res) => {
     });
   }
 };
-export {getProducts}
+
+const getTopProducts = async (req, res) => {
+  try {
+    const products = await Product.find().limit(10);;
+    res.status(200).json({
+      success: true,
+      count: products.length,
+      products,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch products",
+      error: error.message,
+    });
+  }
+};
+
+export {getTopProducts,getProducts}
