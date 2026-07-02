@@ -3,6 +3,8 @@ import Tempuser from "../model/tempUserSchema.js";
 import User from "../model/userSchema.js";
 import { generateOTP } from "../utilities/generateOtp.js";
 import { sendOTPEmail } from "../utilities/sendOtp.js";
+import generateToken from "../utilities/generateJwtTokenUser.js";
+import bcrypt from 'bcrypt'
 
 
 const userRegister = async(req,res)=>{
@@ -83,6 +85,68 @@ const userRegister = async(req,res)=>{
     }
 }
 
+const verifyOTP = async (req, res) => {
+   
+      console.log("verify otp called ")
+  try {
+        const { email,password, otp } = req.body;
+        console.log("eee",email,password,otp)
+        console.log("enetred otp",otp)
+        console.log("type of enetred otp is", typeof otp)
+        
+         const salt = await bcrypt.genSalt(10); 
+         
+          
+         const user = await Tempuser.findOne({ email:email});
+       
+
+  if (!user) return res.status(400).json({ success:false,message: "User not found" });
+  const isMatch = await bcrypt.compare(password,user.password);
+  if (!isMatch) {
+    return res.status(401).json({ success:false , message: " password" });
+}
+
+   console.log("user.otp is ",user.otp)
+  if (Number(user.otp) !== Number(otp)) {
+    return res.status(400).json({ success:false,message: "Wrong OTP" });
+  }
+
+  
+   const newUser = await User.create({
+      name:user.name,
+      email,
+      password: user.password,
+    });
+    await Tempuser.deleteOne({ _id: user._id })
+
+     const token = generateToken(newUser._id);
+      console.log("token generated",token)
+
+      res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+   console.log("cookie set")
+
+  return res.json({
+    success:true,
+    message: "Account verified and signup successfully ",
+  });
+  } catch (error) {
+    console.log("shibu have errror in verify otp",error)
+     return res.status(400).json({
+        success: false,
+        message: error,
+      });
+
+  }
+
+
+};
+
+
 
 const getProducts = async (req, res) => {
   try {
@@ -119,4 +183,4 @@ const getTopProducts = async (req, res) => {
   }
 };
 
-export {getTopProducts,getProducts,userRegister}
+export {getTopProducts,getProducts,userRegister,verifyOTP}
